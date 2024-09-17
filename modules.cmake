@@ -2,7 +2,7 @@
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_EXTENSIONS OFF)
-set(LIBCXX_PATH "/home/mo/Development/llvm-project/build-libcxx")
+set(LIBCXX_PATH "/Users/mo/Development/llvm-project/build")
 file(COPY "${LIBCXX_PATH}/modules/c++/v1/"
         DESTINATION "${PROJECT_BINARY_DIR}/c++std/")
 
