@@ -1,11 +1,8 @@
 // LogTest.cpp
 
 #include <gtest/gtest.h>
-#include <sstream>
-#include <iostream>
-#include <regex>
-
-#include "Log.h"
+import std;
+import log;
 
 // Helper class to redirect std::cout for testing
 class CoutRedirect {

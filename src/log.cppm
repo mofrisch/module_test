@@ -1,12 +1,32 @@
+//
+// Created by mo on 9/13/24.
+//
+export module log;
+import std;
 
+// Enumeration for log levels
+export enum class LogLevel { Debug, Info, Warning, Error };
 
+// Logging class definition
+export class Log {
+public:
+    Log(const Log &) = delete; // Delete copy constructor
+    static Log &instance();
 
-#include <chrono>
-#include <iostream>
-#include <string>
+    void setLogLevel(const LogLevel level) { _logLevel = level; }
+    void showTime(const bool enable) { _displayTime = enable; }
+    void displayLevel(const bool enable) { _displayLevel = enable; }
 
+    // Log a message
+    void log(LogLevel level, const std::string &message) const;
 
-#include "Log.h"
+private:
+    Log() = default; // Private constructor to prevent instantiation
+
+    LogLevel _logLevel = LogLevel::Info; // Default log level
+    bool _displayTime = true; // Display time in log messages
+    bool _displayLevel = true; // Display log level in log messages
+};
 
 std::string currentTime() {
     using namespace std::chrono;
@@ -23,10 +43,10 @@ public:
     // Constructor to initialize the log levels with corresponding color and string
     LogLevelHelper() {
         logLevels = {
-                {"[DEBUG]", "\033[34m"}, // Blue
-                {"[INFO]", "\033[32m"}, // Green
-                {"[WARNING]", "\033[33m"}, // Yellow
-                {"[ERROR]", "\033[31m"} // Red
+            {"[DEBUG]", "\033[34m"}, // Blue
+            {"[INFO]", "\033[32m"}, // Green
+            {"[WARNING]", "\033[33m"}, // Yellow
+            {"[ERROR]", "\033[31m"} // Red
         };
     }
 
@@ -58,3 +78,6 @@ void Log::log(const LogLevel level, const std::string &message) const {
                   << std::endl;
     }
 }
+
+
+
